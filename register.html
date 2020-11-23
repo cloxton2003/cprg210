@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Sign Up</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap" rel="stylesheet">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+</head>
+
+<body id="reg-body" class="regBody">
+	<!--NAV ---------------------------------------------- -->
+	<nav id="reg-nav">
+	</nav>
+	<!--HEADER ---------------------------------------------- -->
+
+	<!--MAIN ---------------------------------------------- -->
+	<main id="reg-main">
+		<div id="error" class="error"></div>
+		<form method="GET" action="" id="form">
+
+			<div class="reg-form-container">
+
+				<div id="error"></div>
+
+				<label for="fname">First Name</label>
+				<input type="text" name="fname" id="fname" placeholder="First Name">
+
+				<label for="lname">Last Name</label>
+				<input type="text" name="lname" id="lname" placeholder="Last Name" class="fname" required>
+
+				<label for="address">Address</label>
+				<input type="text" name="address" id="address" placeholder="Address" class="fname" required>
+
+				<label for="city">City</label>
+				<input type="text" name="city" id="city" placeholder="City" class="fname" required>
+
+				<label for="province">Province</label>
+				<input type="text" name="province" id="province" placeholder="Province" class="fname" required>
+
+				<label for="postal-code">Postal Code</label>
+				<input type="text" name="postal-code" id="postal-code" placeholder="Postal Code" class="fname" required>
+
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email" placeholder="example@email.com" class="fname" required>
+
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password" placeholder="********" class="fname" required>
+
+				<button type="submit" id="submit">Submit</button>
+				<!-- <input type="reset" id="reset"> -->
+			</div>
+		</form>
+		
+	</main>
+
+
+	<script src="script.js" type="text/javascript" charset="utf-8" async defer></script>
+
+	<!--FOOTER ---------------------------------------------- -->
+	<footer class="footer">
+		&#169; 2020 CoryLoxton-McMahon All RightsReserved
+	</footer>
+	<!-- ---------------------------------------------- -->
+</body>

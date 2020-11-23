@@ -1,0 +1,262 @@
+/*GLOBAL---------------------------------------*/
+@font-face {
+	font-family: OilBats;
+	src: url(OilBats.ttf);
+}
+
+* {
+	box-sizing: border-box;
+	font-family: OilBats, sans-serif;
+	margin: 0;
+	padding: 0;
+	
+}
+
+/*BODY INDEX---------------------------------------*/
+/*remove scroll bar from body on index page*/
+.index {
+	color: #fff;
+	font-family: OilBats, sans-serif;
+	overflow: hidden;
+}
+/*index page view window*/
+section {
+	height: 100vh;
+}
+/*Main title on index page*/
+#home > div > h1 {
+	font-size: 6vw;
+	margin: 5%;
+	max-width: 100px;	
+}
+/*redefine h2 subtitle on all pages*/
+h2 {
+	font-size: 5vw;
+	margin-bottom: 40px;
+}
+/*container for all sections index and animations*/
+.index .mainContent {
+	left: 0;
+	position: absolute;
+	top: 0;	
+	transition: transform 1s ease-out; 
+}
+/*Buttons on index page*/
+.index-link {
+	background-color: rgba(250,250,250,0.07);
+	border: 2px solid rgba(255,255,255,0.56);
+	border-radius: 35px;
+	color: white;
+	font-size: 2vw;
+	padding: 20px 40px;
+	text-decoration: none;
+	transition: border 0.1s ease-in-out;
+}
+.index-link:hover {
+	border-color: white;
+}
+/*index page home background*/
+#home {
+	background: url('hero.jpg') no-repeat center center/ cover;
+	border: 30px solid white;
+}
+/*index page learn more background and locale layout*/
+#about {
+	background: url('benjamin-davies.jpg') no-repeat center center/ cover;
+	border: 30px solid white;
+}
+#about > .sec-container {
+	align-items: flex-end;
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100vh;
+	justify-content: center;
+	margin-right: 5%;
+}
+/*index page services background and locale layout*/
+#services {
+	background: url('holly-mandarich.jpg') no-repeat center center/ cover;
+	border: 30px solid white;
+}
+#services > .sec-container {
+	align-items: flex-start;
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100vh;
+	justify-content: center;
+	margin-left: 10%;
+}
+/*index page contact background and locale layout*/
+#contact {
+	background: url('felix-lam.jpg') no-repeat center center/ cover;
+	border: 30px solid white;
+}
+#contact > .sec-container {
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100vh;
+	justify-content: center;
+	margin-top: 10%;
+}
+/*index page gallery background*/
+#gallery {
+	background: url('eight.jpg') no-repeat center center/ cover;
+	border: 30px solid white;
+}
+/*index page gallery table*/
+#gallery > table, tr, td {
+	border: 0;
+	text-align: center;
+}
+
+#gallery td {
+	border: 2px solid rgba(255,255,255,0.56);
+	background-color: rgba(250,250,250,0.07);
+	border-radius: 35px;
+	cursor: pointer;
+	color: white;
+	font-size: 3vw;
+	transition: border 0.1s ease-in-out;
+}
+#gallery > table {
+	table-layout: fixed;
+	width: 100%;
+}
+/*footer copyright info*/
+.footer {
+	bottom:2px;
+	color: black;
+	position: absolute;
+}
+/*index page navigation bar*/
+.nav {
+	position: fixed;
+	right: 40px;
+	top: 100px;
+}
+.navBtn {
+	cursor: pointer;
+	height: 36px;
+	position: relative;
+	width: 40px;
+}
+.navBtn::after {
+	border: 5px solid grey;
+	border-radius: 50%;
+	content: '';
+	height: 14px;
+	left: 10px;
+	opacity: 0.5;
+	position: absolute;
+	width: 14px;
+	
+	
+	top: 8px;
+	
+	
+}
+.navBtn.active::after {
+	border-color: white;
+	opacity: 1;
+}
+.navBtn span {
+	border-radius: 15px;
+	color: white;
+	opacity: 0;
+	position: absolute;
+	right: 40px;
+	top: 7px;
+	transition: all 0.25s ease-in-out;
+	visibility: hidden;
+	white-space: nowrap;
+}
+.navBtn:hover span {
+	opacity: 1;
+	visibility: visible;
+}
+/*registration page body settings*/
+#reg-body {
+	overflow: hidden;
+}
+/*registration page container settings*/
+#reg-main {
+	align-items: center;
+	background: url("kace-rodriguez.jpg") no-repeat center center/cover;
+	border: 30px solid white;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	margin: 0;
+	width: 100%;	
+}
+/*registration page container*/
+.reg-form-container {
+	align-items: center;
+	color: white;
+	display: flex;
+	flex-flow: column wrap;
+	font-size: 1.5em;
+	justify-content: center;	
+}
+/*registration page form settings*/
+.reg-form-container input {
+	background: rgba(255, 255, 255, 1);
+	max-width: 300px;
+	min-width: 200px;
+}
+form {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 25px;
+	font-family: cursive;
+	padding: 20px;
+}
+/*registration form validation text*/
+.vali {
+	visibility: hidden;
+}
+.error {
+	
+	background: rgba(0, 0, 0, 0.8);
+	bottom: 150px;
+	color: white;
+	max-width: 240px;
+	position: absolute;
+	text-align:center;
+}
+
+/*contact page main*/
+#contact-body {
+	overflow: hidden;
+}
+
+#contact-container {
+	background: url("aiokr-chen.jpg") no-repeat center center/cover;
+	border: 30px solid white;
+	height: 100vh;
+	width: 100%;
+}
+
+#contact-table {
+  	height: 100%;
+  	position: fixed;
+  	width: 30%;
+  	
+
+}
+
+#contact-table > tr, #contact-table td {
+	width: 30%;
+}
+
+#contact-table td {
+	color: white;
+	cursor: pointer;
+	font-size: 4vh;
+
+}
+
+.agentContainer {
+	width: 100%;
+	height: 100%;
+}
