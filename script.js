@@ -1,124 +1,137 @@
-// this will fix any refresh issues on reload with smooth scroll
-history.scrollRestoration = 'manual';
 
-//-- NAVIGATION BAR-----------------------------
+
+//-- NAVIGATION BAR CREATION AND FUNCTION FOR INDEX PAGE
+	// CALCULATE PAGE LENGTH FOR NAV BAR AND MAX SCROLL
     window.addEventListener('load', function() {
-        if (document.body.classList.contains('index') && window.innerWidth > 300) {
-            const sect = document.querySelectorAll('section');
-            const cont = document.querySelector('.mainContent');
-            let scrollv = 0;
-            let can_scroll = true;
-            sec_nav = '';
+        if (document.body.classList.contains('index')) {
+
+            const SECTION_BACKGROUND = document.querySelectorAll('section');
+            const INDEX_LENGTH = document.querySelector('.mainContent');
+            let VERTICAL_SCROLL = 0;
+            let CAN_SCROLL = true;
+            let NAV_BAR = '';
+
             document.body.insertAdjacentHTML('beforeEnd', '<div class="nav"></div>');
-            for (let i = 0; i < sect.length; i++) {
-                sec_nav += '<div class="navBtn"><span>' + sect[i].dataset.title + '</span></div>';
+
+            for (let i = 0; i < SECTION_BACKGROUND.length; i++) {
+                NAV_BAR += '<div class="navBtn"><span>' + SECTION_BACKGROUND[i].dataset.title + '</span></div>'; 
         }
-    
-            document.querySelector('.nav').innerHTML = sec_nav;
-            const buttons = document.querySelectorAll('.navBtn');
-            buttons[0].classList.add('active');
-            for (let i = 0; i < buttons.length; i++) {
-                buttons[i].addEventListener('click', function() {
+    		// NAV BAR BUTTON MOVE TO CORRESPONDING PAGE AND TOGGLE STYLE		
+            document.querySelector('.nav').innerHTML = NAV_BAR;
+
+            const NAV_BAR_BTNS = document.querySelectorAll('.navBtn');
+
+            NAV_BAR_BTNS[0].classList.add('active');
+
+            for (let i = 0; i < NAV_BAR_BTNS.length; i++) {
+                NAV_BAR_BTNS[i].addEventListener('click', function() {
                     document.querySelector('.navBtn.active').classList.remove('active');
                     this.classList.add('active');
-                    scrollv = i;
-                    scroll_content(scrollv);
+                    VERTICAL_SCROLL = i;
+                    scroll_content(VERTICAL_SCROLL);
             });
     }
 
-//-- MOUSESCROLL------------------------------------  
+//-- MOUSE SMOOTH SCROLL FOR INDEX PAGE------------------
+	// RESET MOUSE SCROLL FUNTION ON PAGE REFRESH
+	history.scrollRestoration = 'manual';
+
+	// SCROLL BY PAGE NOT BY INCREMENTS
     window.addEventListener('wheel', function(e) {
-        if (can_scroll) {
-            can_scroll = false;
+        if (CAN_SCROLL) {
+            CAN_SCROLL = false;
             if (e.deltaY > 0) {
-                if (scrollv < sect.length - 1) scrollv += 1;
+                if (VERTICAL_SCROLL < SECTION_BACKGROUND.length - 1) VERTICAL_SCROLL += 1;
             } else {
-                if (scrollv > 0) scrollv -= 1;
+                if (VERTICAL_SCROLL > 0) VERTICAL_SCROLL -= 1;
             }
-            scroll_content(scrollv);
+            scroll_content(VERTICAL_SCROLL);
         }
         setTimeout(function() {
-            can_scroll = true;
+            CAN_SCROLL = true;
         }, 560);
     });
     
     function scroll_content(count) {
-        cont.setAttribute('style', '\
+        INDEX_LENGTH.setAttribute('style', '\
         -webkit-transform: translateY(-' + count * 100 + 'vh);\
         -ms-transform: translateY(-' + count * 100 + 'vh);\
         -o-transform: translateY(-' + count * 100 + 'vh);\
         transform: translateY(-' + count * 100 + 'vh);\
         ');
             document.querySelector('.navBtn.active').classList.remove('active');
-            buttons[count].classList.add('active');
+            NAV_BAR_BTNS[count].classList.add('active');
             }
         }
     });
 
 // -------------GALLERY----------------------------------
 
+    const GALLERY_TR = document.querySelector(".indexTr");
+    const GALLERY_CONTAINER = document.querySelector('.divContainer');
+    const INDEX_BOOLEAN = document.querySelector('.index');
+    
+    let GALLERY_ARRAY = [
+    	"columbia.jpg",
+    	"alberta.jpg",
+    	"saskatchewan.jpg",
+    	"ontario.jpg",
+    	"newfoundland.jpg"
+    	];
+    
+	let GALLERY_DESCRIPTIONS = [
+		"British Columbia",
+		"Alberta",
+		"Saskatchewan",
+		"Ontario",
+		"Newfoundland"
+		];
+    
+    // POPULATE GALLERY DESCRIPTIONS INTO TABLE
+    if (INDEX_BOOLEAN) {
+        for (i = 0; i < GALLERY_DESCRIPTIONS.length; i++) {
 
-    const imgDescs = new Array();
-    const tableRow = document.querySelector(".indexTr");
-    const divContainer = document.querySelector('.divContainer');
-    const index = document.querySelector('.index');
-    
-    const imgArray = ["columbia.jpg", "alberta.jpg", "saskatchewan.jpg", "ontario.jpg", "newfoundland.jpg"];
-    imgDescs[0] = "British Columbia";
-    imgDescs[1] = "Alberta";
-    imgDescs[2] = "Saskatchewan";
-    imgDescs[3] = "Ontario";
-    imgDescs[4] = "Newfoundland";
-    
-    if (index) {
-        for (i = 0; i < imgDescs.length; i++) {
-            const td = document.createElement('td');
-            tableRow.appendChild(td);
-            td.textContent = imgDescs[i];
-            td.id = i;
-            td.className = "imgGallery";
+            const GALLERY_TD = document.createElement('td');
+            GALLERY_TR.appendChild(GALLERY_TD);
+            GALLERY_TD.textContent = GALLERY_DESCRIPTIONS[i];
+            GALLERY_TD.id = i;
+            GALLERY_TD.className = "imgGallery";
         }
     }
-// contacts page-------------------------------------------
+// CONTACTS AND GALLERY ARRAY FUNCTION-----------------------
 
-    const imgAgents = ['anton-darius.jpg', 'bradley-dunn.jpg', 'jude-beck.jpg', 'mohammed-alherz.jpg'];
-    const agent = document.querySelector('.agentContainer');
+    const AGENTS_IMG = ['anton-darius.jpg', 'bradley-dunn.jpg', 'jude-beck.jpg', 'mohammed-alherz.jpg'];
+    const AGENT_IMG_CONTAINER = document.querySelector('.agentContainer');
 
 // mouse over event to change gallery and agent profile pictures
     document.addEventListener('mouseover', function(e) {
         if (e.target && e.target.className == "imgGallery") {
-            divContainer.style.background = "url(" + imgArray[e.target.id] + ") no-repeat center center/ cover";
+            GALLERY_CONTAINER.style.background = "url(" + GALLERY_ARRAY[e.target.id] + ") no-repeat center center/ cover";
         } else if (e.target && e.target.className == "agentId") {
-            agent.style.background == "url(" + imgAgents[e.target.id] + ") no-repeat center center/ cover";
+            AGENT_IMG_CONTAINER.style.background = "url(" + AGENTS_IMG[e.target.id] + ") no-repeat center center/ cover";
         }
     });
-
 
 // same as about but for mobile to change gallery and agent profile pictures
-    document.addEventListener('touchstart', function(e) {
+        document.addEventListener('touchstart', function(e) {
         if (e.target && e.target.className == "imgGallery") {
-            divContainer.style.background = "url(" + imgArray[e.target.id] + ") no-repeat center center/ cover";
+            GALLERY_CONTAINER.style.background = "url(" + GALLERY_ARRAY[e.target.id] + ") no-repeat center center/ cover";
         } else if (e.target && e.target.className == "agentId") {
-            agent.style.background = "url(" + imgAgents[e.target.id] + ") no-repeat center center/ cover";
+            AGENT_IMG_CONTAINER.style.background = "url(" + AGENTS_IMG[e.target.id] + ") no-repeat center center/ cover";
         }
     });
 
-    const name = document.getElementById('fname');
-    const lname = document.getElementById('lname');
-    const address = document.getElementById('address');
-    const city = document.getElementById('city');
-    const province = document.getElementById('province');
-    const pcode = document.getElementById('postal-code');
-    const email = document.getElementById('email');
-    const form = document.getElementById('form');
-    const password = document.getElementById('password');
-    const errorElement = document.getElementById('error');
-
-// ------------RegExp-----------------------------------------
-    const regBody = document.querySelector('.regBody')
+// ------------REGULAR EXPRESSIONS FOR REGISTER FORM--------------------
+    const FIRST_NAME = document.getElementById('fname');
+    const LAST_NAME = document.getElementById('lname');
+    const POSTAL_CODE = document.getElementById('postal-code');
+    const REGISTER_FORM = document.getElementById('form');
+    const PASSWORD = document.getElementById('password');
+    const WRONG_INPUT = document.getElementById('error');
+    const REGISTER_PAGE = document.querySelector('.regBody');
     
-    if (regBody) {
-        form.addEventListener('submit', (e) => {
+    if (REGISTER_PAGE) {
+        REGISTER_FORM.addEventListener('submit', (e) => {
             let messages = [];
             let strongRegex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$/);
             let pcodeRegex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
@@ -130,64 +143,64 @@ history.scrollRestoration = 'manual';
             // (?=.*[!@#$%^&*]) The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
             // (?=.{8,})  The string must be eight characters or longer
     
-            if (name.value === '' || name.value == null) {
+            if (FIRST_NAME.value === '' || FIRST_NAME.value == null) {
                 messages.push('please enter a name')
             }
-            if (lname.value === '' || lname.value == null) {
+            if (LAST_NAME.value === '' || LAST_NAME.value == null) {
                 messages.push('please enter a last name');
             }
     
             // ----------------POSTALCODE------------
     
-            if (!pcode.value.match(pcodeRegex)) {
+            if (!POSTAL_CODE.value.match(pcodeRegex)) {
                 messages.push('Please enter a valid postal code');
             }
     
             // -----------------PASSWORD-------------
     
-            if (!password.value.match(strongRegex)) {
+            if (!PASSWORD.value.match(strongRegex)) {
                 messages.push('Password must contain at least, one lowercase, one uppercase, one number, one special character and a minimum of eight characters long');
             }
     
-        // ------------PREVENT BLANK ENTRY------------------ 
-        if (messages.length > 0) {
-            e.preventDefault();
-            errorElement.innerText = messages.join('');
-        }
-    })
+        	// ------------PREVENT BLANK ENTRY------------------ 
+        	if (messages.length > 0) {
+        	    e.preventDefault();
+        	    WRONG_INPUT.innerText = messages.join('');
+        	}
+    	});
 
-// --------------------FORM ADVISEMENT--------------
+	// --------------------FORM ADVISEMENT--------------
 
-    const x = document.querySelectorAll('input');
+    const FORM_INPUT = document.querySelectorAll('input');
 
-    x.forEach(el => {
+    FORM_INPUT.forEach(el => {
         el.addEventListener('mouseover', (e) => {
-            let y = el.getAttribute("name");
-            let z = document.getElementById('error');
-            switch (y) {
+            let FORM_ATTR = el.getAttribute("name");
+            let ERR_MESSAGE = document.getElementById('error');
+            switch (FORM_ATTR) {
                 case "fname":
-                    z.innerText = 'optional';
+                    ERR_MESSAGE.innerText = 'optional';
                     break;
                 case "lname":
-                    z.innerText = 'last name required';
+                    ERR_MESSAGE.innerText = 'last name required';
                     break;
                 case "address":
-                    z.innerText = 'address required';
+                    ERR_MESSAGE.innerText = 'address required';
                     break;
                 case "city":
-                    z.innerText = 'city required';
+                    ERR_MESSAGE.innerText = 'city required';
                     break;
                 case "province":
-                    z.innerText = 'province required';
+                    ERR_MESSAGE.innerText = 'province required';
                     break;
-                case "pcode":
-                    z.innerText = 'postal code required';
+                case "postal-code":
+                    ERR_MESSAGE.innerText = 'postal code required';
                     break;
                 case "email":
-                    z.innerText = 'email required';
+                    ERR_MESSAGE.innerText = 'email required';
                     break;
                 case "password":
-                    z.innerText = 'password required';
+                    ERR_MESSAGE.innerText = 'password required';
                     break;
             }
         });
