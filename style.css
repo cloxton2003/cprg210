@@ -155,32 +155,59 @@ h2 {
 
 /*index page gallery background and layout*/
 #gallery {
-	background: url('eight.jpg') no-repeat center center/ cover;
-	border: 30px solid white;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-/*index page gallery table*/
-#gallery > table, tr, td {
-	border: 0;
-	text-align: center;
-}
+	/*PROVINCE TABLE---------*/
+	.index-table-province {
+		width: 90%;
+		height: 90%;
 
-#gallery td {
-	border: 2px solid rgba(255,255,255,0.56);
-	background-color: rgba(250,250,250,0.07);
-	border-radius: 35px;
-	cursor: pointer;
-	color: white;
-	font-size: 3vw;
-	-webkit-transition: border 0.1s ease-in-out;
-	-o-transition: border 0.1s ease-in-out;
-	transition: border 0.1s ease-in-out;
-}
+	}
+	.index-tr-province {
+		display: flex;
+		flex-flow: column wrap;
+		height: 25%;
+	}
+	.index-td-province {
+		background: no-repeat center center /cover;
+		color: white;
+		font-size: 4vw;
+		height: 100%;
+		text-align: center;
+		transition: transform 1s;
+		margin: 15px;
+	}
+	.index-td-province:hover {
+		transform: scale(1.1);
+	}
+	/*INDEX TABLE DATA TOOLTIP*/
+	.tooltip {
+		position:relative;
+		border-bottom:1px dashed #000;
+	}
 
-#gallery > table {
-	table-layout: fixed;
-	width: 100%;
-}
+	.tooltip:before {
+	  	background: rgba(0, 0, 0, 0.5);
+	  	border-radius:10px;
+	  	color: white;
+	  	content: attr(data-text);
+	  	display:none;
+	  	font-size: 2vw;
+		max-width:90%;
+	  	padding:10px;
+	  	position:absolute;
+	  	text-align:center;
+	  	top:50%;
+		}
+	
+	.tooltip:hover:before {
+	 	display: block;
+	}
 
 /*footer copyright info*/
 .footer {
@@ -312,36 +339,58 @@ form {
 }
 
 /*contact page main*/
-#contact-body {
-	overflow: hidden;
-}
-
 #contact-container {
-	background: url("aiokr-chen.jpg") no-repeat center center/cover;
-	border: 30px solid white;
 	height: 100vh;
-	width: 100%;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-#contact-table {
-  	height: 100%;
-  	position: fixed;
-  	width: 30%;
-  	
-}
+	/*CONTACTS TABLE---------*/
+	.contact-table-agent {
+		width: 90%;
+		height: 90%;
 
-#contact-table > tr, #contact-table td {
-	width: 30%;
-}
+	}
+	.contact-tr-agent {
+		display: flex;
+		flex-flow: column wrap;
+		height: 25%;
+	}
+	.contact-td-agent {
+		background: no-repeat center center /cover;
+		color: white;
+		font-size: 4vw;
+		height: 100%;
+		text-align: center;
+		transition: transform 1s;
+		margin: 15px;
+	}
+	.contact-td-agent:hover {
+		transform: scale(1.1);
+	}
+	/*CONTACT TABLE DATA TOOLTIP*/
+	.tooltip {
+		position:relative;
+		border-bottom:1px dashed #000;
+	}
 
-#contact-table td {
-	color: white;
-	cursor: pointer;
-	font-size: 4vh;
+	.tooltip:before {
+	  	background: rgba(0, 0, 0, 0.5);
+	  	border-radius:10px;
+	  	color: white;
+	  	content: attr(data-text);
+	  	display:none;
+	  	font-size: 2vw;
+		max-width:90%;
+	  	padding:10px;
+	  	position:absolute;
+	  	text-align:center;
+	  	top:50%;
+		}
+	
+	.tooltip:hover:before {
+	 	display: block;
+	}
 
-}
-
-.agentContainer {
-	width: 100%;
-	height: 100%;
-}

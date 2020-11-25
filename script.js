@@ -78,78 +78,60 @@ window.addEventListener('load', function()
 });
 
 // -------------GALLERY----------------------------------
-
-const GALLERY_TR = document.querySelector(".indexTr");
-const GALLERY_CONTAINER = document.querySelector('.divContainer');
-const INDEX_BOOLEAN = document.querySelector('.index');
-
-let GALLERY_ARRAY = [
-    "columbia.jpg",
-    "alberta.jpg",
-    "saskatchewan.jpg",
-    "ontario.jpg",
-    "newfoundland.jpg"
+if (document.body.classList.contains('index')) {
+let IMG_ARRAY = [
+    'holly-mandarich.jpg',
+    'alberta.jpg',
+    'ontario.jpg',
+    'newfoundland.jpg'
 ];
 
-let GALLERY_DESCRIPTIONS = [
-    "British Columbia",
-    "Alberta",
-    "Saskatchewan",
-    "Ontario",
-    "Newfoundland"
-];
+let IMG_URL = [
+    'https://www.travelalberta.com/ca/',
+    'https://www.ontariotravel.net/en/home',
+    'https://www.newfoundlandlabrador.com/trip-ideas/travel-itineraries',
+    'https://www.bonjourquebec.com/en-us/to-see-and-do/outdoor-activities/hiking'
+    ];
 
-// POPULATE GALLERY DESCRIPTIONS INTO TABLE
-if (INDEX_BOOLEAN)
-{
-    for (i = 0; i < GALLERY_DESCRIPTIONS.length; i++)
+let IMG_DESCRIPTION = [
+    'ALBERTA',
+    'ONTARIO',
+    'NEWFOUNDLAND',
+    'QUEBEC',
+    ];
+
+const INDEX_TR_PROVINCE = document.querySelectorAll("tr.index-tr-province");
+
+for(let i = 0, length1 = IMG_ARRAY.length; i < length1; i++)
     {
-        const GALLERY_TD = document.createElement('td');
-        GALLERY_TR.appendChild(GALLERY_TD);
-        GALLERY_TD.textContent = GALLERY_DESCRIPTIONS[i];
-        GALLERY_TD.id = i;
-        GALLERY_TD.className = "imgGallery";
+    const INDEX_TD_PROVINCE = document.createElement('td');
+    INDEX_TR_PROVINCE[i].appendChild(INDEX_TD_PROVINCE);
+    INDEX_TD_PROVINCE.className = ('index-td-province tooltip');
+    INDEX_TD_PROVINCE.style.backgroundImage = `url(${ IMG_ARRAY[i] })`;
+    let TD_IMG_DESCRIPTION = document.createTextNode( IMG_DESCRIPTION[i] );
+    INDEX_TD_PROVINCE.appendChild(TD_IMG_DESCRIPTION);
+    INDEX_TD_PROVINCE.dataset.text = `${ IMG_URL[i] }`;
     }
-}
-// CONTACTS AND GALLERY ARRAY FUNCTION-----------------------
-const AGENT_IMG_CONTAINER = document.querySelector('.agentContainer');
-const AGENTS_IMG = [
-    'anton-darius.jpg',
-    'bradley-dunn.jpg',
-    'jude-beck.jpg',
-    'mohammed-alherz.jpg'
-];
 
-// mouse over event to change gallery and agent profile pictures
-document.addEventListener('mouseover', function(e)
+document.addEventListener('click', function(e)
 {
-    if (e.target && e.target.className == "imgGallery")
+    if (e.target && e.target.className == "index-td-province tooltip")
     {
-        GALLERY_CONTAINER.style.background = "url(" + GALLERY_ARRAY[e
-            .target.id] + ") no-repeat center center/ cover";
-    }
-    else if (e.target && e.target.className == "agentId")
-    {
-        AGENT_IMG_CONTAINER.style.background = "url(" + AGENTS_IMG[e
-            .target.id] + ") no-repeat center center/ cover";
+        let newWindow = window.open(e.target.dataset.text,'popUpWindow','height=600,width=900,left=100,top=100,,menubar=no');
+        setTimeout(function() { newWindow.close(); }, 3000);
+        return false;    
     }
 });
 
-// same as about but for mobile to change gallery and agent profile pictures
 document.addEventListener('touchstart', function(e)
 {
-    if (e.target && e.target.className == "imgGallery")
+    if (e.target && e.target.className == "index-td-province tooltip")
     {
-        GALLERY_CONTAINER.style.background = "url(" + GALLERY_ARRAY[e
-            .target.id] + ") no-repeat center center/ cover";
-    }
-    else if (e.target && e.target.className == "agentId")
-    {
-        AGENT_IMG_CONTAINER.style.background = "url(" + AGENTS_IMG[e
-            .target.id] + ") no-repeat center center/ cover";
+        let newWindowTouch = window.open(e.target.dataset.text,'popUpWindow','height=600,width=900,left=100,top=100,,menubar=no');
+        setTimeout(function() { newWindowTouch.close(); }, 3000);      
     }
 });
-
+}
 // ------------REGULAR EXPRESSIONS FOR REGISTER FORM--------------------
 const FIRST_NAME = document.getElementById('fname');
 const LAST_NAME = document.getElementById('lname');
@@ -249,4 +231,43 @@ if (REGISTER_PAGE)
             }
         });
     });
+}
+
+
+// CONTACTS PAGE-------------------
+
+if (document.body.classList.contains('contact-body')) {
+let CONTACT_IMG_ARRAY = [
+    'rui-silvestre.jpg',
+    'philip-martin.jpg',
+    'michael-dam.jpg',
+    'justin-chen.jpg'
+];
+
+let CONTACT_IMG_URL = [
+    'rui-silvestre@email.com',
+    'philip-martin@email.com',
+    'michael-dam@email.com',
+    'justin-chen@email.com'
+    ];
+
+let CONTACT_IMG_DESCRIPTION = [
+    'RUI SILVESTRE',
+    'PHILIP MARTIN',
+    'MICHAEL DAM',
+    'JUSTIN CHEN',
+    ];
+
+const CONTACT_TR_AGENT = document.querySelectorAll("tr");
+
+for(let i = 0, length1 = CONTACT_IMG_ARRAY.length; i < length1; i++)
+    {
+    const CONTACT_TD_AGENT = document.createElement('td');
+    CONTACT_TR_AGENT[i].appendChild(CONTACT_TD_AGENT);
+    CONTACT_TD_AGENT.className = ('contact-td-agent tooltip zoomout frame');
+   CONTACT_TD_AGENT.style.backgroundImage = `url(${ CONTACT_IMG_ARRAY[i] })`;
+    let TD_CONTACT_IMG_DESCRIPTION = document.createTextNode( CONTACT_IMG_DESCRIPTION[i] );
+    CONTACT_TD_AGENT.appendChild(TD_CONTACT_IMG_DESCRIPTION);
+    CONTACT_TD_AGENT.dataset.text = `${ CONTACT_IMG_URL[i] }`;
+    }
 }
